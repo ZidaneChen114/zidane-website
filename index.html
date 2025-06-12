@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name - Personal Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333333;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #007acc;
+    }
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #007acc;
+      display: inline-block;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background-color: #f1f1f1;
+      color: #777;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      nav {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Name</h1>
+    <p>Prospective Engineering Major | Passionate Maker | Problem Solver</p>
+  </header>
+  <nav>
+    <a href="#resume">Resume</a>
+    <a href="#activities">Activities</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <main>
+    <section id="resume">
+      <h2>Resume</h2>
+      <p>Download my <a href="resume.pdf" target="_blank">resume here</a>.</p>
+      <ul>
+        <li>GPA: 3.9/4.0</li>
+        <li>SAT: 1500 (Math 790, Verbal 710)</li>
+        <li>IB Predicted: 42/45</li>
+      </ul>
+    </section>
+
+    <section id="activities">
+      <h2>Activities</h2>
+      <ul>
+        <li>Founder of 3D Printing Club - Designed assistive devices for elderly</li>
+        <li>Long-distance runner - School team captain</li>
+        <li>Volunteer in Alzheimer care home</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li>ESP32-powered stepper motor controller with OLED display</li>
+        <li>AI-powered memory puzzle for Alzheimer's patients</li>
+        <li>Spring constant experiment with self-collected oscillation data</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Your Name. All rights reserved.
+  </footer>
+</body>
+</html>
