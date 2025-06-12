@@ -1,1 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zidane Chen</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: white;
+      color: #000;
+    }
+
+    .navbar {
+      background-color: #007BFF;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .navbar .name {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .intro {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .photo-carousel {
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .carousel-img {
+      width: 100%;
+      display: none;
+      margin-bottom: 1rem;
+    }
+
+    .carousel-img.active {
+      display: block;
+    }
+
+    .carousel-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .carousel-buttons button {
+      padding: 0.5rem 1rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .bio {
+      max-width: 500px;
+      margin: 1rem;
+    }
+
+    .bio h2 {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .section-block {
+      text-align: center;
+      max-width: 200px;
+    }
+
+    .section-block img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .section-block h3 {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .intro {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航栏 -->
+  <header class="navbar">
+    <div class="name">Zidane Chen</div>
+    <nav class="menu">
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="sports.html">Sports</a>
+          <a href="3dprinting.html">3D Printing</a>
+          <a href="model.html">Model</a>
+          <a href="painting.html">Painting</a>
+          <a href="cooking.html">Cooking</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 主页面内容 -->
+  <section class="intro">
+    <div class="photo-carousel">
+      <img src="images/photo1.jpg" alt="Zidane 1" class="carousel-img active">
+      <img src="images/photo2.jpg" alt="Zidane 2" class="carousel-img">
+      <div class="carousel-buttons">
+        <button onclick="showImage(0)">1</button>
+        <button onclick="showImage(1)">2</button>
+      </div>
+    </div>
+    <div class="bio">
+      <h2>About Me</h2>
+      <p>Hello, I’m Zidane Chen, a student passionate about engineering, design, and creativity...</p>
+    </div>
+  </section>
+
+  <!-- 五个分支入口 -->
+  <section class="sections">
+    <div class="section-block">
+      <a href="sports.html">
+        <img src="images/sports.jpg" alt="Sports">
+        <h3>Sports</h3>
+      </a>
+    </div>
+    <div class="section-block">
+      <a href="3dprinting.html">
+        <img src="images/3dprinting.jpg" alt="3D Printing">
+        <h3>3D Printing</h3>
+      </a>
+    </div>
+    <div class="section-block">
+      <a href="model.html">
+        <img src="images/model.jpg" alt="Model">
+        <h3>Model</h3>
+      </a>
+    </div>
+    <div class="section-block">
+      <a href="painting.html">
+        <img src="images/painting.jpg" alt="Painting">
+        <h3>Painting</h3>
+      </a>
+    </div>
+    <div class="section-block">
+      <a href="cooking.html">
+        <img src="images/cooking.jpg" alt="Cooking">
+        <h3>Cooking</h3>
+      </a>
+    </div>
+  </section>
+
+  <!-- 页脚（所有页面共享） -->
+  <footer>
+    <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
+  </footer>
+
+  <script>
+    const images = document.querySelectorAll('.carousel-img');
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
+  </script>
+</body>
+</html>
 
