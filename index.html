@@ -20,13 +20,13 @@
     body {
       display: flex;
       flex-direction: column;
-      min-height: 100vh; /* 页面最少撑满屏幕 */
+      min-height: 100vh;
       background-color: white;
       color: #000;
     }
 
     main {
-      flex: 1; /* 主内容占据剩余空间 */
+      flex: 1;
     }
 
     .navbar {
@@ -84,12 +84,22 @@
       width: 300px;
       height: 300px;
       overflow: hidden;
+      position: relative;
+      border-radius: 10px;
     }
 
-    .carousel-img {
+    .photo-carousel img {
       width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      object-fit: cover;
+    }
+
+    .photo-carousel img.active {
       display: block;
-      margin-bottom: 1rem;
     }
 
     .bio {
@@ -158,8 +168,9 @@
   <main>
     <section class="intro">
       <div class="photo-carousel">
-        <img src="images/image1.jpg" alt="Zidane 1" class="carousel-img">
-        <img src="images/image2.jpg" alt="Zidane 2" class="carousel-img">
+        <img src="images/image1.jpg" alt="Zidane 1" class="active">
+        <img src="images/image2.jpg" alt="Zidane 2">
+        <img src="images/image3.jpg" alt="Zidane 3">
       </div>
       <div class="bio">
         <h2>About Me</h2>
@@ -167,6 +178,7 @@
       </div>
     </section>
 
+    <!-- 五个分支入口 -->
     <section class="sections">
       <div class="section-block">
         <a href="sports.html">
@@ -201,9 +213,21 @@
     </section>
   </main>
 
-  <!-- 页脚（所有页面共享） -->
+  <!-- 页脚 -->
   <footer>
     <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
   </footer>
+
+  <!-- 轮播脚本 -->
+  <script>
+    const slides = document.querySelectorAll('.photo-carousel img');
+    let currentIndex = 0;
+    function showNextSlide() {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('active');
+    }
+    setInterval(showNextSlide, 3000); // 每3秒切换
+  </script>
 </body>
 </html>
