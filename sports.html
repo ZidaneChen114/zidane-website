@@ -1,271 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sports - Zidane Chen</title>
-
-  <!-- Swiper 样式（CDN）-->
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
-    /* 全局 & 布局 */
-    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
-    html,body{height:100%}
-    body{display:flex;flex-direction:column;min-height:100vh;background:#fff;color:#000}
-    main{flex:1;padding:1rem 0}
-
-    /* 顶部导航（与主站保持一致） */
-    .navbar{background:#007BFF;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem}
-    .navbar .name a{color:#fff;text-decoration:none;font-weight:700;font-size:1.2rem}
-    .dropdown{position:relative}
-    .dropbtn{background:#007BFF;border:none;color:#fff;padding:.4rem .8rem;cursor:pointer}
-    .dropdown-content{display:none;position:absolute;right:0;background:#fff;box-shadow:0 8px 16px rgba(0,0,0,.15);z-index:10}
-    .dropdown:hover .dropdown-content{display:block}
-    .dropdown-content a{display:block;padding:.6rem 1rem;color:#000;text-decoration:none}
-    .dropdown-content a:hover{background:#f1f1f1}
-
-    .page-wrap{max-width:1100px;margin:1.5rem auto;padding:0 1rem}
-
-    /* 每个区域（标题+描述+幻灯片） */
-    .sport-section{margin:2.5rem 0}
-    .sport-title{font-size:1.45rem;font-weight:700;margin-bottom:.6rem}
-    .sport-desc{color:#333;margin-bottom:1rem;line-height:1.6}
-
-    /* Swiper 容器样式 */
-    .slider-area{position:relative;padding:1rem 0}
-    .swiper-container{width:100%;padding:2rem 0}
-    .swiper-wrapper{display:flex;align-items:center} /* 垂直居中滑块 */
-
-    /* 单个 slide 的大小与动画 */
-    .swiper-slide{
-      width: 300px;            /* 你可以按需调整宽度 */
-      height: 190px;
-      transition: transform .45s cubic-bezier(.2,.9,.2,1), opacity .45s ease, filter .45s ease;
-      opacity: 0.35;
-      transform: scale(.82);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .swiper-slide img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:10px;
-      display:block;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    }
-
-    /* 中间高亮 slide */
-    .swiper-slide.swiper-slide-active{
-      opacity:1;
-      transform: scale(1.00);
-      z-index: 5;
-      filter: none;
-    }
-    /* 紧邻中间的 slide */
-    .swiper-slide.swiper-slide-prev,
-    .swiper-slide.swiper-slide-next{
-      opacity:0.75;
-      transform: scale(.92);
-      z-index:4;
-      filter: none;
-    }
-
-    /* 远离中心的 slide 保持暗化/小 */
-    .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next){
-      filter: grayscale(20%) brightness(.7);
-    }
-
-    /* 自定义箭头（圆形白底+蓝色箭头） */
-    .swiper-button-prev, .swiper-button-next{
-      width:44px;height:44px;border-radius:50%;
-      background: rgba(255,255,255,0.95);
-      color:#007BFF;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    }
-    .swiper-button-prev::after, .swiper-button-next::after{font-size:18px}
-
-    /* 使箭头位于 slider 区域中央外侧一点 */
-    .swiper-button-prev{left: -22px}
-    .swiper-button-next{right: -22px}
-
-    /* 响应式 */
-    @media(max-width:900px){
-      .swiper-slide{width:220px;height:150px}
-      .swiper-button-prev{left:-12px}
-      .swiper-button-next{right:-12px}
-    }
-    @media(max-width:600px){
-      .swiper-slide{width:170px;height:120px}
-      .swiper-button-prev,.swiper-button-next{display:none} /* 移动端用触摸滑动 */
-    }
-
-    footer{background:#000;color:#fff;text-align:center;padding:1rem;margin-top:2rem}
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background-color: white; color: #000; }
+    .navbar { background-color: #007BFF; color: white; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    .navbar .name { font-size: 1.5rem; font-weight: bold; cursor: pointer; }
+    .dropdown { position: relative; display: inline-block; }
+    .dropbtn { background-color: #007BFF; color: white; border: none; cursor: pointer; font-size: 1rem; padding: 0.5rem 1rem; }
+    .dropdown-content { display: none; position: absolute; right: 0; background-color: white; min-width: 160px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 1; }
+    .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; }
+    .dropdown-content a:hover { background-color: #f1f1f1; }
+    .dropdown:hover .dropdown-content { display: block; }
+    .section { padding: 3rem 1rem; }
+    .section h2 { font-weight: bold; margin-bottom: 1rem; font-size: 2rem; }
+    .section p { margin-bottom: 1rem; font-size: 1rem; }
+    .swiper-container { width: 100%; padding-top: 2rem; padding-bottom: 2rem; }
+    .swiper-slide { width: 250px; height: 180px; background-position: center; background-size: cover; border-radius: 12px; transition: transform 0.5s, opacity 0.5s; }
+    .swiper-button-next, .swiper-button-prev { color: #007BFF; }
+    footer { background-color: #000; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
   </style>
 </head>
 <body>
 
-  <!-- 顶部导航 -->
-  <header class="navbar">
-    <div class="name"><a href="index.html">Zidane Chen</a></div>
-    <nav class="menu">
-      <div class="dropdown">
-        <button class="dropbtn">Menu</button>
-        <div class="dropdown-content">
-          <a href="index.html">Home</a>
-          <a href="3dprinting.html">3D Printing</a>
-          <a href="model.html">Model</a>
-          <a href="painting.html">Painting</a>
-          <a href="cooking.html">Cooking</a>
-        </div>
+<header class="navbar">
+  <div class="name" onclick="window.location.href='index.html'">Zidane Chen</div>
+  <nav class="menu">
+    <div class="dropdown">
+      <button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="3dprinting.html">3D Printing</a>
+        <a href="model.html">Model</a>
+        <a href="painting.html">Painting</a>
+        <a href="cooking.html">Cooking</a>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
 
-  <!-- 页面主要内容 -->
-  <main class="page-wrap">
-    <!-- 區域：Volleyball -->
-    <section id="volleyball" class="sport-section">
-      <div class="sport-title">Volleyball</div>
-      <div class="sport-desc">
-        我在校排球队担任过主要位置，注重团队配合与场上决策。下面是一些比赛与训练的照片（左右切换查看）。
-      </div>
+<!-- Sports Sections -->
+<div class="section" id="volleyball">
+  <h2>Volleyball</h2>
+  <p>Passionate about teamwork and sportsmanship, I enjoy competitive volleyball matches and training sessions...</p>
+  <div class="swiper-container" id="volleyballSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('images/volleyball1.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/volleyball2.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/volleyball3.jpg')"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
 
-      <div class="slider-area">
-        <div class="sport-slider">
-          <div class="swiper-container volley-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="images/sports/volleyball/volley1.jpg" alt="Volleyball 1"></div>
-              <div class="swiper-slide"><img src="images/sports/volleyball/volley2.jpg" alt="Volleyball 2"></div>
-              <div class="swiper-slide"><img src="images/sports/volleyball/volley3.jpg" alt="Volleyball 3"></div>
-              <div class="swiper-slide"><img src="images/sports/volleyball/volley4.jpg" alt="Volleyball 4"></div>
-            </div>
-          </div>
-          <div class="swiper-button-prev volley-prev"></div>
-          <div class="swiper-button-next volley-next"></div>
-        </div>
-      </div>
-    </section>
+<div class="section" id="hiking">
+  <h2>Hiking</h2>
+  <p>Exploring nature through long-distance hikes helps me stay physically active and mentally refreshed...</p>
+  <div class="swiper-container" id="hikingSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('images/hiking1.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/hiking2.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/hiking3.jpg')"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
 
-    <!-- 區域：Hiking -->
-    <section id="hiking" class="sport-section">
-      <div class="sport-title">Hiking</div>
-      <div class="sport-desc">
-        喜歡徒步遠足、認識自然。這些照片是我走過的一些徒步路線與山景紀錄。
-      </div>
+<div class="section" id="running">
+  <h2>Long Distance Running</h2>
+  <p>Long-distance running builds endurance, patience, and a sense of achievement with each completed route...</p>
+  <div class="swiper-container" id="runningSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('images/running1.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/running2.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/running3.jpg')"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
 
-      <div class="slider-area">
-        <div class="sport-slider">
-          <div class="swiper-container hike-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="images/sports/hiking/hike1.jpg" alt="Hiking 1"></div>
-              <div class="swiper-slide"><img src="images/sports/hiking/hike2.jpg" alt="Hiking 2"></div>
-              <div class="swiper-slide"><img src="images/sports/hiking/hike3.jpg" alt="Hiking 3"></div>
-            </div>
-          </div>
-          <div class="swiper-button-prev hike-prev"></div>
-          <div class="swiper-button-next hike-next"></div>
-        </div>
-      </div>
-    </section>
+<div class="section" id="other">
+  <h2>Other Sports</h2>
+  <p>Engaging in badminton and other sports keeps me active and challenges my agility and reflexes...</p>
+  <div class="swiper-container" id="otherSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('images/badminton1.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/badminton2.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/badminton3.jpg')"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
 
-    <!-- 區域：Long Distance Running -->
-    <section id="running" class="sport-section">
-      <div class="sport-title">Long Distance Running</div>
-      <div class="sport-desc">
-        長跑訓練讓我學會自律與耐力。在賽道與訓練照中可以看到我對節奏與配速的把握。
-      </div>
+<footer>
+  <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
+</footer>
 
-      <div class="slider-area">
-        <div class="sport-slider">
-          <div class="swiper-container run-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="images/sports/running/run1.jpg" alt="Running 1"></div>
-              <div class="swiper-slide"><img src="images/sports/running/run2.jpg" alt="Running 2"></div>
-              <div class="swiper-slide"><img src="images/sports/running/run3.jpg" alt="Running 3"></div>
-            </div>
-          </div>
-          <div class="swiper-button-prev run-prev"></div>
-          <div class="swiper-button-next run-next"></div>
-        </div>
-      </div>
-    </section>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+function createSportSwiper(containerEl, prevEl, nextEl){
+  const swiper = new Swiper(containerEl, {
+    loop: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    speed: 600,
+    navigation: { nextEl: nextEl, prevEl: prevEl },
+    keyboard: { enabled: true },
+    grabCursor: true,
+    on: { slideChangeTransitionStart(){ updateSlideScale(this); }, init(){ updateSlideScale(this); } }
+  });
 
-    <!-- 區域：Other Sports -->
-    <section id="others" class="sport-section">
-      <div class="sport-title">Other Sports</div>
-      <div class="sport-desc">
-        其他運動：羽毛球等。這些活動幫助我在協調性與短時爆發力上提升。
-      </div>
-
-      <div class="slider-area">
-        <div class="sport-slider">
-          <div class="swiper-container other-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="images/sports/other/other1.jpg" alt="Other 1"></div>
-              <div class="swiper-slide"><img src="images/sports/other/other2.jpg" alt="Other 2"></div>
-              <div class="swiper-slide"><img src="images/sports/other/other3.jpg" alt="Other 3"></div>
-            </div>
-          </div>
-          <div class="swiper-button-prev other-prev"></div>
-          <div class="swiper-button-next other-next"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- 页脚 -->
-  <footer>
-    <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
-  </footer>
-
-  <!-- Swiper JS（CDN）-->
-  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
-  <script>
-    // 初始化每個 slider 的通用選項
-    function createSportSwiper(containerEl, prevEl, nextEl){
-      return new Swiper(containerEl, {
-        loop: true,
-        centeredSlides: true,
-        slidesPerView: 'auto', // 依CSS的slide寬度自適應
-        spaceBetween: 24,
-        speed: 600,
-        navigation: {
-          nextEl: nextEl,
-          prevEl: prevEl,
-        },
-        keyboard: { enabled: true },
-        grabCursor: true,
-        // 當 slide 變化時（Swiper 會自動在 active/prev/next 上加 class），我們只倚賴 CSS 實現縮放與明暗效果
-      });
-    }
-
-    // 為每個區域建立 Swiper（傳 DOM 元素 reference）
-    document.addEventListener('DOMContentLoaded', function(){
-      const vol = createSportSwiper(
-        document.querySelector('.volley-swiper'),
-        document.querySelector('.volley-prev'),
-        document.querySelector('.volley-next')
-      );
-      const hike = createSportSwiper(
-        document.querySelector('.hike-swiper'),
-        document.querySelector('.hike-prev'),
-        document.querySelector('.hike-next')
-      );
-      const run = createSportSwiper(
-        document.querySelector('.run-swiper'),
-        document.querySelector('.run-prev'),
-        document.querySelector('.run-next')
-      );
-      const other = createSportSwiper(
-        document.querySelector('.other-swiper'),
-        document.querySelector('.other-prev'),
-        document.querySelector('.other-next')
-      );
+  function updateSlideScale(swiperInstance){
+    swiperInstance.slides.forEach((slide,index)=>{
+      const diff = Math.abs(swiperInstance.activeIndex - index);
+      if(diff === 0){ slide.style.transform = 'scale(1)'; slide.style.opacity='1'; slide.style.filter='none'; }
+      else if(diff === 1){ slide.style.transform='scale(0.92)'; slide.style.opacity='0.75'; slide.style.filter='none'; }
+      else { slide.style.transform='scale(0.82)'; slide.style.opacity='0.35'; slide.style.filter='grayscale(20%) brightness(.7)'; }
     });
-  </script>
+  }
+  return swiper;
+}
+
+// 初始化四个区域的 swiper
+createSportSwiper('#volleyballSwiper', '#volleyballSwiper .swiper-button-prev', '#volleyballSwiper .swiper-button-next');
+createSportSwiper('#hikingSwiper', '#hikingSwiper .swiper-button-prev', '#hikingSwiper .swiper-button-next');
+createSportSwiper('#runningSwiper', '#runningSwiper .swiper-button-prev', '#runningSwiper .swiper-button-next');
+createSportSwiper('#otherSwiper', '#otherSwiper .swiper-button-prev', '#otherSwiper .swiper-button-next');
+</script>
 </body>
 </html>
