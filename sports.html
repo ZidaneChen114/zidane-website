@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports - Zidane Chen</title>
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-    body { background-color: white; color: #000; }
-    .navbar { background-color: #007BFF; color: white; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-    .navbar .name { font-size: 1.5rem; font-weight: bold; cursor: pointer; }
-    .dropdown { position: relative; display: inline-block; }
-    .dropbtn { background-color: #007BFF; color: white; border: none; cursor: pointer; font-size: 1rem; padding: 0.5rem 1rem; }
-    .dropdown-content { display: none; position: absolute; right: 0; background-color: white; min-width: 160px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 1; }
-    .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; }
-    .dropdown-content a:hover { background-color: #f1f1f1; }
-    .dropdown:hover .dropdown-content { display: block; }
-    .section { padding: 3rem 1rem; }
-    .section h2 { font-weight: bold; margin-bottom: 1rem; font-size: 2rem; }
-    .section p { margin-bottom: 1rem; font-size: 1rem; }
-    .swiper-container { width: 100%; padding-top: 2rem; padding-bottom: 2rem; }
-    .swiper-slide { width: 250px; height: 180px; background-position: center; background-size: cover; border-radius: 12px; transition: transform 0.5s, opacity 0.5s; }
-    .swiper-button-next, .swiper-button-prev { color: #007BFF; }
-    footer { background-color: #000; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sports - Zidane Chen</title>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+  body { background-color: white; color: #000; }
+  .navbar { background-color: #007BFF; color: white; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+  .navbar .name { font-size: 1.5rem; font-weight: bold; cursor: pointer; }
+  .dropdown { position: relative; display: inline-block; }
+  .dropbtn { background-color: #007BFF; color: white; border: none; cursor: pointer; font-size: 1rem; padding: 0.5rem 1rem; }
+  .dropdown-content { display: none; position: absolute; right: 0; background-color: white; min-width: 160px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 1; }
+  .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; }
+  .dropdown-content a:hover { background-color: #f1f1f1; }
+  .dropdown:hover .dropdown-content { display: block; }
+  .sport-section { padding: 3rem 1rem; }
+  .sport-section h2 { font-weight: bold; margin-bottom: 0.5rem; font-size: 2rem; }
+  .sport-section p { margin-bottom: 1rem; font-size: 1rem; }
+  .swiper-container { width: 100%; height: 250px; }
+  .swiper-slide { display: flex; justify-content: center; align-items: center; transition: transform 0.5s, opacity 0.5s; }
+  .swiper-slide img { width: 80%; height: auto; border-radius: 12px; }
+  .swiper-button-next, .swiper-button-prev { color: #007BFF; }
+  footer { background-color: #000; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
+</style>
 </head>
 <body>
 
@@ -43,62 +44,62 @@
   </nav>
 </header>
 
-<!-- Sports Sections -->
-<div class="section" id="volleyball">
+<!-- 四个运动区域 -->
+<section class="sport-section">
   <h2>Volleyball</h2>
   <p>Passionate about teamwork and sportsmanship, I enjoy competitive volleyball matches and training sessions...</p>
-  <div class="swiper-container" id="volleyballSwiper">
+  <div class="swiper-container volleyball-swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('images/volleyball1.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/volleyball2.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/volleyball3.jpg')"></div>
+      <div class="swiper-slide"><img src="images/volleyball1.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/volleyball2.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/volleyball3.jpg" alt=""></div>
     </div>
-    <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-</div>
+</section>
 
-<div class="section" id="hiking">
+<section class="sport-section">
   <h2>Hiking</h2>
   <p>Exploring nature through long-distance hikes helps me stay physically active and mentally refreshed...</p>
-  <div class="swiper-container" id="hikingSwiper">
+  <div class="swiper-container hiking-swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('images/hiking1.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/hiking2.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/hiking3.jpg')"></div>
+      <div class="swiper-slide"><img src="images/hiking1.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/hiking2.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/hiking3.jpg" alt=""></div>
     </div>
-    <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-</div>
+</section>
 
-<div class="section" id="running">
+<section class="sport-section">
   <h2>Long Distance Running</h2>
   <p>Long-distance running builds endurance, patience, and a sense of achievement with each completed route...</p>
-  <div class="swiper-container" id="runningSwiper">
+  <div class="swiper-container running-swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('images/running1.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/running2.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/running3.jpg')"></div>
+      <div class="swiper-slide"><img src="images/running1.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/running2.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/running3.jpg" alt=""></div>
     </div>
-    <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-</div>
+</section>
 
-<div class="section" id="other">
+<section class="sport-section">
   <h2>Other Sports</h2>
   <p>Engaging in badminton and other sports keeps me active and challenges my agility and reflexes...</p>
-  <div class="swiper-container" id="otherSwiper">
+  <div class="swiper-container other-swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('images/badminton1.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/badminton2.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/badminton3.jpg')"></div>
+      <div class="swiper-slide"><img src="images/badminton1.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/badminton2.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images/badminton3.jpg" alt=""></div>
     </div>
-    <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
-</div>
+</section>
 
 <footer>
   <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
@@ -106,42 +107,37 @@
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-function createSportSwiper(containerEl, prevEl, nextEl){
-  const swiper = new Swiper(containerEl, {
+function initSwiper(containerSelector){
+  const swiper = new Swiper(containerSelector, {
     loop: true,
     centeredSlides: true,
     slidesPerView: 'auto',
-    spaceBetween: 24,
-    speed: 600,
-    navigation: { nextEl: nextEl, prevEl: prevEl },
-    keyboard: { enabled: true },
-    grabCursor: true,
+    spaceBetween: 30,
+    navigation: { nextEl: containerSelector + ' .swiper-button-next', prevEl: containerSelector + ' .swiper-button-prev' },
     on: {
-      init(){ updateSlideScale(this); },
-      slideChangeTransitionStart(){ updateSlideScale(this); },
-      slideChange(){ updateSlideScale(this); }
+      init: function(){ updateScale(this); },
+      slideChange: function(){ updateScale(this); },
+      slideChangeTransitionStart: function(){ updateScale(this); }
     }
   });
-
-  function updateSlideScale(swiperInstance){
-    swiperInstance.slides.forEach((slide) => {
+  function updateScale(swiper){
+    swiper.slides.forEach(slide=>{
       const progress = slide.progress;
-      let scale, opacity, filter;
-      if(Math.abs(progress) < 0.5){ scale = 1; opacity = 1; filter = 'none'; }
-      else if(Math.abs(progress) < 1.5){ scale = 0.92; opacity = 0.75; filter = 'none'; }
-      else { scale = 0.82; opacity = 0.35; filter = 'grayscale(20%) brightness(.7)'; }
+      let scale = 0.8, opacity = 0.3;
+      if(Math.abs(progress)<0.5){ scale=1; opacity=1; }
+      else if(Math.abs(progress)<1.5){ scale=0.92; opacity=0.7; }
       slide.style.transform = `scale(${scale})`;
       slide.style.opacity = opacity;
-      slide.style.filter = filter;
     });
   }
   return swiper;
 }
 
-createSportSwiper('#volleyballSwiper', '#volleyballSwiper .swiper-button-prev', '#volleyballSwiper .swiper-button-next');
-createSportSwiper('#hikingSwiper', '#hikingSwiper .swiper-button-prev', '#hikingSwiper .swiper-button-next');
-createSportSwiper('#runningSwiper', '#runningSwiper .swiper-button-prev', '#runningSwiper .swiper-button-next');
-createSportSwiper('#otherSwiper', '#otherSwiper .swiper-button-prev', '#otherSwiper .swiper-button-next');
+initSwiper('.volleyball-swiper');
+initSwiper('.hiking-swiper');
+initSwiper('.running-swiper');
+initSwiper('.other-swiper');
 </script>
+
 </body>
 </html>
