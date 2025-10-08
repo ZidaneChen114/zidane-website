@@ -116,21 +116,28 @@ function createSportSwiper(containerEl, prevEl, nextEl){
     navigation: { nextEl: nextEl, prevEl: prevEl },
     keyboard: { enabled: true },
     grabCursor: true,
-    on: { slideChangeTransitionStart(){ updateSlideScale(this); }, init(){ updateSlideScale(this); } }
+    on: {
+      init(){ updateSlideScale(this); },
+      slideChangeTransitionStart(){ updateSlideScale(this); },
+      slideChange(){ updateSlideScale(this); }
+    }
   });
 
   function updateSlideScale(swiperInstance){
-    swiperInstance.slides.forEach((slide,index)=>{
-      const diff = Math.abs(swiperInstance.activeIndex - index);
-      if(diff === 0){ slide.style.transform = 'scale(1)'; slide.style.opacity='1'; slide.style.filter='none'; }
-      else if(diff === 1){ slide.style.transform='scale(0.92)'; slide.style.opacity='0.75'; slide.style.filter='none'; }
-      else { slide.style.transform='scale(0.82)'; slide.style.opacity='0.35'; slide.style.filter='grayscale(20%) brightness(.7)'; }
+    swiperInstance.slides.forEach((slide) => {
+      const progress = slide.progress;
+      let scale, opacity, filter;
+      if(Math.abs(progress) < 0.5){ scale = 1; opacity = 1; filter = 'none'; }
+      else if(Math.abs(progress) < 1.5){ scale = 0.92; opacity = 0.75; filter = 'none'; }
+      else { scale = 0.82; opacity = 0.35; filter = 'grayscale(20%) brightness(.7)'; }
+      slide.style.transform = `scale(${scale})`;
+      slide.style.opacity = opacity;
+      slide.style.filter = filter;
     });
   }
   return swiper;
 }
 
-// 初始化四个区域的 swiper
 createSportSwiper('#volleyballSwiper', '#volleyballSwiper .swiper-button-prev', '#volleyballSwiper .swiper-button-next');
 createSportSwiper('#hikingSwiper', '#hikingSwiper .swiper-button-prev', '#hikingSwiper .swiper-button-next');
 createSportSwiper('#runningSwiper', '#runningSwiper .swiper-button-prev', '#runningSwiper .swiper-button-next');
