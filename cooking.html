@@ -6,40 +6,48 @@
   <title>Cooking - Zidane Chen</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
-    html, body { height:100%; }
-    body { display:flex; flex-direction:column; min-height:100vh; background-color:white; color:#000; }
-    main { flex:1; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    html, body { height: 100%; }
+    body { display: flex; flex-direction: column; min-height: 100vh; background: #fff; color: #000; }
+    main { flex: 1; padding: 2rem 1rem; }
 
     .navbar {
-      background-color: #007BFF; color:white;
-      display:flex; justify-content:space-between; align-items:center;
-      padding:1rem 2rem;
+      background: #007BFF; color: #fff;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
     }
-    .navbar .name a { color:white; text-decoration:none; font-size:1.5rem; font-weight:bold; }
-    .dropdown { position:relative; display:inline-block; }
-    .dropbtn { background-color:#007BFF;color:white;border:none;cursor:pointer;font-size:1rem;padding:0.5rem 1rem; }
-    .dropdown-content { display:none; position:absolute; right:0; background-color:white; min-width:160px; box-shadow:0 8px 16px rgba(0,0,0,0.2); z-index:1; }
-    .dropdown-content a { color:black; padding:12px 16px; text-decoration:none; display:block; }
-    .dropdown-content a:hover { background-color:#f1f1f1; }
-    .dropdown:hover .dropdown-content { display:block; }
+    .navbar .name a { color: #fff; text-decoration: none; font-size: 1.5rem; font-weight: bold; }
+    .dropdown { position: relative; display: inline-block; }
+    .dropbtn { background: #007BFF; color: #fff; border: none; cursor: pointer; padding: 0.5rem 1rem; }
+    .dropdown-content { display: none; position: absolute; right: 0; background: #fff; min-width: 160px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1; }
+    .dropdown-content a { color: #000; padding: 12px 16px; text-decoration: none; display: block; }
+    .dropdown-content a:hover { background: #f1f1f1; }
+    .dropdown:hover .dropdown-content { display: block; }
 
-    .intro { display:flex; flex-wrap:wrap; justify-content:space-around; align-items:center; padding:3rem 1rem; text-align:center; }
+    .intro { display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; padding: 2rem 1rem; }
+    .bio { max-width: 800px; margin: 1rem; }
+    .bio h2 { font-weight: bold; margin-bottom: 1rem; }
 
-    .dish { display:flex; flex-direction:column; align-items:center; gap:10px; padding-bottom:2rem; }
-    .dish img { width:80%; max-width:500px; border-radius:10px; transition: transform 0.3s; cursor:pointer; }
-    .dish img:hover { transform: scale(1.03); }
-    .dish-name { font-weight:bold; text-transform:uppercase; font-size:1.2rem; margin-top:8px; }
-    .dish-desc { max-width:600px; text-align:center; color:#555; }
+    .dishes { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; }
+    .dish { width: 48%; margin-bottom: 2rem; }
+    .dish h3 { font-weight: bold; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .dish-description { margin-top: 0.5rem; }
 
-    footer { background-color:#000; color:#fff; text-align:center; padding:1rem; }
+    .dish-images { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .dish-images img { width: 48%; border-radius: 8px; cursor: pointer; transition: transform 0.3s ease; }
+    .dish-images img:hover { transform: scale(1.05); }
 
-    .modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; background: rgba(0,0,0,0.8); justify-content:center; align-items:center; }
-    .modal img { max-width:90%; max-height:90%; border-radius:10px; }
-    .close { position:fixed; top:40px; right:60px; color:white; font-size:2rem; font-weight:bold; cursor:pointer; }
+    /* 模态预览 */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 100; }
+    .modal img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+    .modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2rem; cursor: pointer; }
+
+    footer { background: #000; color: #fff; text-align: center; padding: 1rem; }
+    @media(max-width: 768px){ .dish { width: 100%; } .dish-images img { width: 48%; } }
   </style>
 </head>
 <body>
+  <!-- 顶部导航 -->
   <header class="navbar">
     <div class="name"><a href="index.html">Zidane Chen</a></div>
     <nav class="menu">
@@ -56,34 +64,142 @@
     </nav>
   </header>
 
+  <!-- 主页面内容 -->
   <main>
     <section class="intro">
       <div class="bio">
-        <h2>My Cooking</h2>
-        <p>Cooking is my way to explore creativity and culture through flavors. Every dish I make tells a story of experimentation, patience, and joy in the kitchen.</p>
+        <h2>Cooking Passion</h2>
+        <p>I love exploring new recipes and presenting dishes creatively. Below are some of my favorite creations.</p>
       </div>
     </section>
 
-    <section class="dish">
-      <img src="images/cooking/dish1.jpg" alt="Dish 1" onclick="openModal(this)">
-      <div class="dish-name">SPAGHETTI CARBONARA</div>
-      <div class="dish-desc">A classic Italian dish with creamy sauce and pancetta.</div>
-    </section>
-    <section class="dish">
-      <img src="images/cooking/dish2.jpg" alt="Dish 2" onclick="openModal(this)">
-      <div class="dish-name">GRILLED SALMON</div>
-      <div class="dish-desc">Fresh salmon grilled to perfection, served with lemon butter and seasonal vegetables.</div>
-    </section>
-    <section class="dish">
-      <img src="images/cooking/dish3.jpg" alt="Dish 3" onclick="openModal(this)">
-      <div class="dish-name">CHOCOLATE LAVA CAKE</div>
-      <div class="dish-desc">Decadent dessert with molten chocolate center, served warm.</div>
+    <!-- 菜品列表 -->
+    <section class="dishes">
+      <!-- 第一道菜，两张照片 -->
+      <div class="dish">
+        <h3>Dish One</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish1.jpg" alt="Dish One 1">
+          <img src="images/cooking/dish2.jpg" alt="Dish One 2">
+        </div>
+        <p class="dish-description">Description of Dish One, ingredients, and preparation highlights.</p>
+      </div>
+
+      <!-- 第二道菜，两张照片 -->
+      <div class="dish">
+        <h3>Dish Two</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish3.jpg" alt="Dish Two 1">
+          <img src="images/cooking/dish4.jpg" alt="Dish Two 2">
+        </div>
+        <p class="dish-description">Description of Dish Two, ingredients, and preparation highlights.</p>
+      </div>
+
+      <!-- 第三道菜 -->
+      <div class="dish">
+        <h3>Dish Three</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish5.jpg" alt="Dish Three">
+        </div>
+        <p class="dish-description">Description of Dish Three.</p>
+      </div>
+
+      <!-- 第四道菜 -->
+      <div class="dish">
+        <h3>Dish Four</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish6.jpg" alt="Dish Four">
+        </div>
+        <p class="dish-description">Description of Dish Four.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Five</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish7.jpg" alt="Dish Five">
+        </div>
+        <p class="dish-description">Description of Dish Five.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Six</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish8.jpg" alt="Dish Six">
+        </div>
+        <p class="dish-description">Description of Dish Six.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Seven</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish9.jpg" alt="Dish Seven">
+        </div>
+        <p class="dish-description">Description of Dish Seven.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Eight</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish10.jpg" alt="Dish Eight">
+        </div>
+        <p class="dish-description">Description of Dish Eight.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Nine</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish11.jpg" alt="Dish Nine">
+        </div>
+        <p class="dish-description">Description of Dish Nine.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Ten</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish12.jpg" alt="Dish Ten">
+        </div>
+        <p class="dish-description">Description of Dish Ten.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Eleven</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish13.jpg" alt="Dish Eleven">
+        </div>
+        <p class="dish-description">Description of Dish Eleven.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Twelve</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish14.jpg" alt="Dish Twelve">
+        </div>
+        <p class="dish-description">Description of Dish Twelve.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Thirteen</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish15.jpg" alt="Dish Thirteen">
+        </div>
+        <p class="dish-description">Description of Dish Thirteen.</p>
+      </div>
+
+      <div class="dish">
+        <h3>Dish Fourteen</h3>
+        <div class="dish-images">
+          <img src="images/cooking/dish16.jpg" alt="Dish Fourteen">
+        </div>
+        <p class="dish-description">Description of Dish Fourteen.</p>
+      </div>
+      <!-- 后面菜品依次类推... -->
     </section>
   </main>
 
+  <!-- 模态预览 -->
   <div class="modal" id="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modalImage" src="">
+    <span class="modal-close" id="modalClose">&times;</span>
+    <img id="modalImg" src="" alt="Preview">
   </div>
 
   <footer>
@@ -91,12 +207,20 @@
   </footer>
 
   <script>
-    function openModal(img){
-      document.getElementById("modal").style.display="flex";
-      document.getElementById("modalImage").src=img.src;
-    }
-    function closeModal(){document.getElementById("modal").style.display="none";}
-    document.getElementById("modal").addEventListener("click",(e)=>{if(e.target===e.currentTarget)closeModal();});
+    // 图片点击放大
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+    document.querySelectorAll('.dish-images img').forEach(img=>{
+      img.addEventListener('click', ()=> {
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+      });
+    });
+    modalClose.addEventListener('click', ()=> modal.style.display = 'none');
+    modal.addEventListener('click', e=>{
+      if(e.target === modal) modal.style.display = 'none';
+    });
   </script>
 </body>
 </html>
