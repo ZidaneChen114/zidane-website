@@ -1,85 +1,90 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
-
-const images = [
-  "/images/painting1.jpg",
-  "/images/painting2.jpg",
-  "/images/painting3.jpg",
-  "/images/painting4.jpg",
-  "/images/painting5.jpg",
-  "/images/painting6.jpg",
-  "/images/painting7.jpg",
-  "/images/painting8.jpg",
-  "/images/painting9.jpg",
-  "/images/painting10.jpg",
-  "/images/painting11.jpg",
-  "/images/painting12.jpg",
-  "/images/painting13.jpg",
-  "/images/painting14.jpg",
-  "/images/painting15.jpg",
-];
-
-export default function Painting() {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  return (
-    <div className="min-h-screen bg-neutral-50 p-10">
-      <h1 className="text-5xl font-bold mb-10 text-center tracking-wide">
-        Paintings
-      </h1>
-
-      {/* 瀑布流布局 */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-        {images.map((src, index) => (
-          <motion.div
-            key={index}
-            className="overflow-hidden rounded-2xl relative cursor-pointer"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setSelectedImage(src)}
-          >
-            <img
-              src={src}
-              alt={`painting-${index}`}
-              className="w-full mb-4 rounded-2xl object-cover hover:opacity-90 transition-all"
-            />
-          </motion.div>
-        ))}
+<!-- 保存为 painting.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Painting - Zidane Chen</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
+  html,body{height:100%}
+  body{display:flex;flex-direction:column;min-height:100vh;background:#fff;color:#000}
+  header.navbar{background:#007BFF;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem}
+  header.navbar .name a{color:#fff;text-decoration:none;font-weight:700;font-size:1.2rem}
+  .dropdown{position:relative}
+  .dropdown-content{display:none;position:absolute;right:0;background:#fff;box-shadow:0 8px 16px rgba(0,0,0,.15)}
+  .dropdown:hover .dropdown-content{display:block}
+  .page-wrap{max-width:1100px;margin:1.5rem auto;padding:0 1rem;flex:1}
+  h1{text-align:center;margin:1.5rem 0}
+  /* Masonry-like with CSS columns */
+  .masonry{columns:1  ;column-gap:16px}
+  @media(min-width:600px){.masonry{columns:2}}
+  @media(min-width:900px){.masonry{columns:3}}
+  .masonry-item{break-inside:avoid;margin-bottom:16px;cursor:pointer;overflow:hidden;border-radius:12px}
+  .masonry-item img{width:100%;display:block;transition:transform .25s ease, filter .25s}
+  .masonry-item:hover img{transform:scale(1.03)}
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;z-index:9999}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:95%;max-height:85%;border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,0.5)}
+  .lightbox .close{position:absolute;top:20px;right:20px;background:#fff;border-radius:50%;width:40px;height:40px;border:none;cursor:pointer}
+  footer{background:#000;color:#fff;text-align:center;padding:1rem;margin-top:2rem}
+</style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="name"><a href="index.html">Zidane Chen</a></div>
+    <nav><div class="dropdown"><button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
+        <a href="index.html">Home</a>
+        <a href="sports.html">Sports</a>
+        <a href="3dprinting.html">3D Printing & Engineering</a>
+        <a href="model.html">Model</a>
+        <a href="painting.html">Painting</a>
+        <a href="cooking.html">Cooking</a>
       </div>
+    </div></nav>
+  </header>
 
-      {/* 弹出放大图 */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              className="relative max-w-5xl max-h-[85vh] p-4"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={selectedImage}
-                alt="full-view"
-                className="rounded-2xl w-full h-auto object-contain shadow-2xl"
-              />
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 bg-white/80 rounded-full p-2 hover:bg-white transition"
-              >
-                <X className="w-6 h-6 text-gray-800" />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+  <main class="page-wrap">
+    <h1>Painting Gallery</h1>
+    <div class="masonry" id="masonry">
+      <!-- 示例：横竖混排 -->
+      <div class="masonry-item"><img src="images/painting1.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting2.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting3.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting4.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting5.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting6.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting7.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting8.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting9.jpg" alt=""></div>
+      <div class="masonry-item"><img src="images/painting10.jpg" alt=""></div>
     </div>
-  );
-}
+  </main>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="close" onclick="closeLightbox()">✕</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <footer>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</footer>
+
+<script>
+  // lightbox：点图片放大，点背景或叉叉关闭
+  document.querySelectorAll('.masonry-item img').forEach(img=>{
+    img.addEventListener('click', (e)=>{
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      lbImg.src = img.src;
+      lb.classList.add('open');
+      e.stopPropagation();
+    });
+  });
+  function closeLightbox(e){
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('open');
+  }
+  // 防止关闭按钮冒泡
+  document.querySelector('.lightbox .close').addEventListener('click', (e)=>{ e.stopPropagation(); closeLightbox(); });
+</script>
+</body>
+</html>
