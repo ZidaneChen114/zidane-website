@@ -1,71 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cooking - Zidane Chen</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial,sans-serif;}
-    body { background-color:white; color:#000; }
-    .navbar { background-color:#007BFF; color:white; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;}
-    .navbar .name { font-size:1.5rem; font-weight:bold; }
-    .dropdown { position:relative; display:inline-block; }
-    .dropbtn { background-color:#007BFF; color:white; border:none; cursor:pointer; font-size:1rem; padding:0.5rem 1rem;}
-    .dropdown-content { display:none; position:absolute; right:0; background-color:white; min-width:160px; box-shadow:0px 8px 16px rgba(0,0,0,0.2); z-index:1;}
-    .dropdown-content a { color:black; padding:12px 16px; text-decoration:none; display:block;}
-    .dropdown-content a:hover { background-color:#f1f1f1; }
-    .dropdown:hover .dropdown-content { display:block; }
-    .section { display:flex; flex-wrap:wrap; justify-content:space-around; padding:2rem;}
-    .project { display:flex; margin-bottom:2rem; max-width:900px; cursor:pointer; }
-    .project img { width:300px; margin-left:auto; }
-    .project .info { max-width:500px; margin-right:auto; padding:1rem; }
-    .project .info h3 { font-weight:bold; margin-bottom:0.5rem; }
-    footer { background-color:#000; color:#fff; text-align:center; padding:1rem; margin-top:2rem; }
-    @media (max-width:768px){ .project{ flex-direction:column; align-items:center; } .project img{ margin:0; } .project .info{ margin:1rem 0; } }
-  </style>
-</head>
-<body>
-  <!-- 顶部导航栏 -->
-  <header class="navbar">
-    <div class="name">Zidane Chen</div>
-    <nav class="menu">
-      <div class="dropdown">
-        <button class="dropbtn">Menu</button>
-        <div class="dropdown-content">
-          <a href="index.html">Home</a>
-          <a href="sports.html">Sports</a>
-          <a href="3dprinting.html">3D Printing</a>
-          <a href="model.html">Model</a>
-          <a href="painting.html">Painting</a>
-          <a href="cooking.html">Cooking</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+import { motion } from "framer-motion";
 
-  <!-- Cooking 页面内容 -->
-  <section class="section">
-    <div class="project" onclick="window.location='cooking_project1.html'">
-      <div class="info">
-        <h3>Cooking Project 1</h3>
-        <p>Description of Cooking Project 1. Include ingredients, preparation, and special features.</p>
+export default function Cooking() {
+  const dishes = [
+    {
+      image: "/images/dish1.jpg",
+      title: "Homemade Ramen",
+      description:
+        "I love the process of making ramen — the slow-cooked broth, the marinated egg, and the slight chewiness of hand-pulled noodles. Every bowl feels like a balance between patience and precision.",
+    },
+    {
+      image: "/images/dish2.jpg",
+      title: "Grilled Salmon with Lemon Butter",
+      description:
+        "Cooking salmon has taught me timing. When the pan sizzles just right and the skin turns golden crisp, the aroma alone makes me smile. It’s a moment of control and art combined.",
+    },
+    {
+      image: "/images/dish3.jpg",
+      title: "Tiramisu",
+      description:
+        "Desserts are where I relax — layering tiramisu is meditative. Every step feels like a calm conversation between flavor and texture, soft and rich, bitter and sweet.",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-amber-50 px-8 md:px-20 py-16">
+      {/* 标题 + 感受 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-4xl mx-auto text-center mb-16"
+      >
+        <h1 className="text-5xl font-bold mb-6 text-amber-800 tracking-wide">
+          Cooking
+        </h1>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          Cooking, for me, is more than just making food — it’s a form of
+          self-expression and mindfulness. When I cook, time slows down. Every
+          sound, every aroma, every small motion connects me with the present.
+          Whether it’s experimenting with flavors or recreating family recipes,
+          I find comfort and creativity in the kitchen.
+        </p>
+      </motion.div>
+
+      {/* 菜品展示 */}
+      <div className="space-y-20">
+        {dishes.map((dish, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className={`flex flex-col md:flex-row ${
+              index % 2 === 1 ? "md:flex-row-reverse" : ""
+            } items-center gap-10`}
+          >
+            <div className="md:w-3/5 w-full">
+              <img
+                src={dish.image}
+                alt={dish.title}
+                className="rounded-2xl shadow-lg object-cover w-full h-[400px]"
+              />
+            </div>
+            <div className="md:w-2/5 w-full">
+              <h2 className="text-3xl font-semibold text-amber-900 mb-4">
+                {dish.title}
+              </h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                {dish.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
       </div>
-      <img src="images/cook_1.jpg" alt="Cooking Project 1">
     </div>
-    <div class="project" onclick="window.location='cooking_project2.html'">
-      <div class="info">
-        <h3>Cooking Project 2</h3>
-        <p>Description of Cooking Project 2.</p>
-      </div>
-      <img src="images/cook_2.jpg" alt="Cooking Project 2">
-    </div>
-    <!-- 可继续添加更多烹饪项目 -->
-  </section>
-
-  <footer>
-    <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
-  </footer>
-</body>
-</html>
-
+  );
+}
