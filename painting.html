@@ -4,160 +4,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painting - Zidane Chen</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
+    html, body { height:100%; }
+    body { display:flex; flex-direction:column; min-height:100vh; background-color:white; color:#000; }
+    main { flex:1; }
 
-    /* 顶部导航栏 */
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background-color: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 40px;
-      z-index: 1000;
+    .navbar {
+      background-color: #007BFF; color:white;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1rem 2rem;
     }
+    .navbar .name a { color:white; text-decoration:none; font-size:1.5rem; font-weight:bold; }
+    .dropdown { position:relative; display:inline-block; }
+    .dropbtn { background-color:#007BFF;color:white;border:none;cursor:pointer;font-size:1rem;padding:0.5rem 1rem; }
+    .dropdown-content { display:none; position:absolute; right:0; background-color:white; min-width:160px; box-shadow:0 8px 16px rgba(0,0,0,0.2); z-index:1; }
+    .dropdown-content a { color:black; padding:12px 16px; text-decoration:none; display:block; }
+    .dropdown-content a:hover { background-color:#f1f1f1; }
+    .dropdown:hover .dropdown-content { display:block; }
 
-    header a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-      margin: 0 15px;
-      transition: color 0.3s;
-    }
+    .intro { display:flex; flex-wrap:wrap; justify-content:space-around; align-items:center; padding:3rem 1rem; }
 
-    header a:hover {
-      color: #888;
-    }
-
-    .logo {
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
-
-    /* 主体内容 */
-    main {
-      padding-top: 100px;
-      max-width: 1200px;
-      margin: 0 auto;
-      column-count: 3; /* 模仿masonry布局 */
+    /* Painting grid */
+    .painting-grid {
+      column-count: 3;
       column-gap: 15px;
+      padding: 1rem;
     }
-
-    @media (max-width: 900px) {
-      main { column-count: 2; }
-    }
-
-    @media (max-width: 600px) {
-      main { column-count: 1; }
-    }
-
-    .painting {
-      position: relative;
+    .painting-grid img {
+      width: 100%;
       margin-bottom: 15px;
-      break-inside: avoid;
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      cursor: zoom-in;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .painting img {
-      width: 100%;
-      display: block;
-      border-radius: 10px;
-      transition: transform 0.4s ease;
-    }
-
-    .painting:hover img {
-      transform: scale(1.05);
-    }
-
-    /* 弹出大图 */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    }
-
-    .close {
-      position: fixed;
-      top: 40px;
-      right: 60px;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
       cursor: pointer;
-      transition: 0.3s;
+      display: inline-block;
     }
+    .painting-grid img:hover { transform: scale(1.03); }
 
-    .close:hover {
-      color: #ccc;
-    }
+    footer { background-color:#000; color:#fff; text-align:center; padding:1rem; }
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9rem;
-      color: #666;
+    /* 模态框 */
+    .modal {
+      display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.8); justify-content:center; align-items:center;
     }
+    .modal img { max-width:90%; max-height:90%; border-radius:10px; }
+    .close { position:fixed; top:40px; right:60px; color:white; font-size:2rem; font-weight:bold; cursor:pointer; }
+
+    @media(max-width:768px){ .painting-grid { column-count:2; } }
+    @media(max-width:480px){ .painting-grid { column-count:1; } }
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="logo" onclick="location.href='index.html'">Zidane Chen</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="sports.html">Sports</a>
-      <a href="3dprinting.html">3D Printing</a>
-      <a href="model.html">Model</a>
-      <a href="painting.html">Painting</a>
-      <a href="cooking.html">Cooking</a>
+  <header class="navbar">
+    <div class="name"><a href="index.html">Zidane Chen</a></div>
+    <nav class="menu">
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="sports.html">Sports</a>
+          <a href="3dprinting.html">3D Printing & Engineering</a>
+          <a href="model.html">Model</a>
+          <a href="painting.html">Painting</a>
+          <a href="cooking.html">Cooking</a>
+        </div>
+      </div>
     </nav>
   </header>
 
   <main>
-    <div class="painting">
-      <img src="images/painting/thumb/painting1.jpg" alt="Painting 1" onclick="openModal(this)">
-    </div>
-    <div class="painting">
-      <img src="images/painting/thumb/painting2.jpg" alt="Painting 2" onclick="openModal(this)">
-    </div>
-    <div class="painting">
-      <img src="images/painting/thumb/painting3.jpg" alt="Painting 3" onclick="openModal(this)">
-    </div>
-    <div class="painting">
-      <img src="images/painting/thumb/painting4.jpg" alt="Painting 4" onclick="openModal(this)">
-    </div>
-    <div class="painting">
-      <img src="images/painting/thumb/painting5.jpg" alt="Painting 5" onclick="openModal(this)">
-    </div>
+    <section class="intro">
+      <div class="bio">
+        <h2>My Paintings</h2>
+        <p>Each painting represents an exploration of composition, color, and emotion. Hover to see the subtle effect and click to enlarge.</p>
+      </div>
+    </section>
+
+    <section class="painting-grid">
+      <img src="images/painting/paint1.jpg" alt="Painting 1" onclick="openModal(this)">
+      <img src="images/painting/paint2.jpg" alt="Painting 2" onclick="openModal(this)">
+      <img src="images/painting/paint3.jpg" alt="Painting 3" onclick="openModal(this)">
+      <img src="images/painting/paint4.jpg" alt="Painting 4" onclick="openModal(this)">
+      <img src="images/painting/paint5.jpg" alt="Painting 5" onclick="openModal(this)">
+      <!-- 可继续增加图片 -->
+    </section>
   </main>
 
   <div class="modal" id="modal">
@@ -166,25 +97,18 @@
   </div>
 
   <footer>
-    © 2025 Zidane Chen. All rights reserved.
+    <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
   </footer>
 
   <script>
     function openModal(img) {
-      const modal = document.getElementById("modal");
-      const modalImage = document.getElementById("modalImage");
-      modal.style.display = "flex";
-      modalImage.src = img.src.replace("thumb", "large"); // 切换到大图路径
+      document.getElementById("modal").style.display = "flex";
+      document.getElementById("modalImage").src = img.src;
     }
-
     function closeModal() {
       document.getElementById("modal").style.display = "none";
     }
-
-    // 点击灰色背景关闭
-    document.getElementById("modal").addEventListener("click", (e) => {
-      if (e.target === e.currentTarget) closeModal();
-    });
+    document.getElementById("modal").addEventListener("click",(e)=>{if(e.target===e.currentTarget)closeModal();});
   </script>
 </body>
 </html>
