@@ -1,168 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Model Gallery - Zidane Chen</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Models</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f8f8f8;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
     }
 
-    body {
-      background-color: #fff;
-      color: #000;
+    /* 页面主框架 */
+    .container {
+      width: 90%;
+      max-width: 1400px;
+      margin: 100px auto 50px auto;
     }
 
-    /* 顶部导航栏 */
-    .navbar {
-      background-color: #007BFF;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-
-    .navbar .name a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropbtn {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      background-color: white;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #f1f1f1;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* 图片网格 */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      padding: 2rem;
-      justify-items: center;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: auto;
-      max-width: 200px;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-
-    /* 页脚 */
-    footer {
-      background-color: #000;
-      color: #fff;
+    .page-title {
       text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 40px;
     }
 
-    @media (max-width: 1000px) {
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
+    /* Masonry风格布局 */
+    .gallery {
+      column-count: 4;
+      column-gap: 15px;
     }
 
+    .gallery-item {
+      position: relative;
+      margin-bottom: 15px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* 点击放大预览 */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .close-btn {
+      position: fixed;
+      top: 30px;
+      right: 50px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    @media (max-width: 900px) {
+      .gallery { column-count: 2; }
+    }
     @media (max-width: 600px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .gallery { column-count: 1; }
     }
   </style>
 </head>
 <body>
-
-  <!-- 顶部导航栏 -->
-  <header class="navbar">
-    <div class="name"><a href="index.html">Zidane Chen</a></div>
+  <!-- 导航栏保持一致 -->
+  <header>
     <nav class="menu">
-      <div class="dropdown">
-        <button class="dropbtn">Menu</button>
-        <div class="dropdown-content">
-          <a href="sports.html">Sports</a>
-          <a href="3dprinting.html">3D Printing & Engineering</a>
-          <a href="model.html">Model</a>
-          <a href="painting.html">Painting</a>
-          <a href="cooking.html">Cooking</a>
-        </div>
-      </div>
+      <a href="index.html">Home</a>
+      <a href="3dprinting.html">3D Printing</a>
+      <a href="model.html" class="active">Models</a>
+      <a href="painting.html">Painting</a>
+      <a href="cooking.html">Cooking</a>
+      <a href="sports.html">Sports</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <!-- 标题 -->
-  <section style="text-align:center; margin-top:2rem;">
-    <h1>Model Projects</h1>
-    <p style="color:#555;">A showcase of my physical and digital model creations.</p>
-  </section>
+  <div class="container">
+    <div class="page-title">3D Models</div>
+    <div class="gallery">
+      <div class="gallery-item"><img src="images/models/model1.jpg" alt="Model 1"></div>
+      <div class="gallery-item"><img src="images/models/model2.jpg" alt="Model 2"></div>
+      <div class="gallery-item"><img src="images/models/model3.jpg" alt="Model 3"></div>
+      <div class="gallery-item"><img src="images/models/model4.jpg" alt="Model 4"></div>
+      <div class="gallery-item"><img src="images/models/model5.jpg" alt="Model 5"></div>
+      <div class="gallery-item"><img src="images/models/model6.jpg" alt="Model 6"></div>
+      <div class="gallery-item"><img src="images/models/model7.jpg" alt="Model 7"></div>
+      <div class="gallery-item"><img src="images/models/model8.jpg" alt="Model 8"></div>
+      <div class="gallery-item"><img src="images/models/model9.jpg" alt="Model 9"></div>
+      <div class="gallery-item"><img src="images/models/model10.jpg" alt="Model 10"></div>
+      <div class="gallery-item"><img src="images/models/model11.jpg" alt="Model 11"></div>
+      <div class="gallery-item"><img src="images/models/model12.jpg" alt="Model 12"></div>
+    </div>
+  </div>
 
-  <!-- 图片网格 -->
-  <section class="gallery">
-    <img src="images/model/model1.jpg" alt="Model 1">
-    <img src="images/model/model2.jpg" alt="Model 2">
-    <img src="images/model/model3.jpg" alt="Model 3">
-    <img src="images/model/model4.jpg" alt="Model 4">
-    <img src="images/model/model5.jpg" alt="Model 5">
-    <img src="images/model/model6.jpg" alt="Model 6">
-    <img src="images/model/model7.jpg" alt="Model 7">
-    <img src="images/model/model8.jpg" alt="Model 8">
-    <img src="images/model/model9.jpg" alt="Model 9">
-    <img src="images/model/model10.jpg" alt="Model 10">
-    <img src="images/model/model11.jpg" alt="Model 11">
-    <img src="images/model/model12.jpg" alt="Model 12">
-  </section>
+  <div class="overlay" id="overlay">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <img id="overlayImg" src="">
+  </div>
 
-  <!-- 页脚 -->
-  <footer>
-    <p>📞 +86 199 2124 7097 | 📧 Zidane_Chen01@outlook.com</p>
-  </footer>
+  <script>
+    const overlay = document.getElementById("overlay");
+    const overlayImg = document.getElementById("overlayImg");
+    const closeBtn = document.getElementById("closeBtn");
+    const items = document.querySelectorAll(".gallery-item img");
 
+    items.forEach(img => {
+      img.addEventListener("click", () => {
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
+    });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay || e.target === closeBtn) {
+        overlay.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
