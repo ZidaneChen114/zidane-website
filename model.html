@@ -1,147 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Models</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model - Zidane Chen</title>
   <style>
     body {
-      font-family: "Poppins", sans-serif;
-      background-color: #f8f8f8;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
     }
 
-    /* 页面主框架 */
-    .container {
-      width: 90%;
-      max-width: 1400px;
-      margin: 100px auto 50px auto;
-    }
-
-    .page-title {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 40px;
-    }
-
-    /* Masonry风格布局 */
-    .gallery {
-      column-count: 4;
-      column-gap: 15px;
-    }
-
-    .gallery-item {
-      position: relative;
-      margin-bottom: 15px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-      border-radius: 10px;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    /* 点击放大预览 */
-    .overlay {
-      display: none;
+    /* 顶部导航栏 */
+    header {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      padding: 12px 40px;
       z-index: 1000;
     }
 
-    .overlay img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
+    header a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      margin: 0 15px;
+      transition: color 0.3s;
     }
 
-    .close-btn {
-      position: fixed;
-      top: 30px;
-      right: 50px;
-      font-size: 2rem;
-      color: white;
+    header a:hover {
+      color: #888;
+    }
+
+    .logo {
+      font-size: 1.4rem;
       cursor: pointer;
-      z-index: 1100;
+    }
+
+    /* 主体内容 */
+    main {
+      padding-top: 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      column-count: 3; /* 模仿masonry布局 */
+      column-gap: 15px;
     }
 
     @media (max-width: 900px) {
-      .gallery { column-count: 2; }
+      main { column-count: 2; }
     }
+
     @media (max-width: 600px) {
-      .gallery { column-count: 1; }
+      main { column-count: 1; }
+    }
+
+    .model {
+      position: relative;
+      margin-bottom: 15px;
+      break-inside: avoid;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      cursor: zoom-in;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .model img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      transition: transform 0.4s ease;
+    }
+
+    .model:hover img {
+      transform: scale(1.05);
+    }
+
+    /* 弹出大图 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .close {
+      position: fixed;
+      top: 40px;
+      right: 60px;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close:hover {
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
+
 <body>
-  <!-- 导航栏保持一致 -->
   <header>
-    <nav class="menu">
+    <div class="logo" onclick="location.href='index.html'">Zidane Chen</div>
+    <nav>
       <a href="index.html">Home</a>
+      <a href="sports.html">Sports</a>
       <a href="3dprinting.html">3D Printing</a>
-      <a href="model.html" class="active">Models</a>
+      <a href="model.html" style="color:#888;">Model</a>
       <a href="painting.html">Painting</a>
       <a href="cooking.html">Cooking</a>
-      <a href="sports.html">Sports</a>
-      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <div class="container">
-    <div class="page-title">3D Models</div>
-    <div class="gallery">
-      <div class="gallery-item"><img src="images/models/model1.jpg" alt="Model 1"></div>
-      <div class="gallery-item"><img src="images/models/model2.jpg" alt="Model 2"></div>
-      <div class="gallery-item"><img src="images/models/model3.jpg" alt="Model 3"></div>
-      <div class="gallery-item"><img src="images/models/model4.jpg" alt="Model 4"></div>
-      <div class="gallery-item"><img src="images/models/model5.jpg" alt="Model 5"></div>
-      <div class="gallery-item"><img src="images/models/model6.jpg" alt="Model 6"></div>
-      <div class="gallery-item"><img src="images/models/model7.jpg" alt="Model 7"></div>
-      <div class="gallery-item"><img src="images/models/model8.jpg" alt="Model 8"></div>
-      <div class="gallery-item"><img src="images/models/model9.jpg" alt="Model 9"></div>
-      <div class="gallery-item"><img src="images/models/model10.jpg" alt="Model 10"></div>
-      <div class="gallery-item"><img src="images/models/model11.jpg" alt="Model 11"></div>
-      <div class="gallery-item"><img src="images/models/model12.jpg" alt="Model 12"></div>
-    </div>
+  <main>
+    <div class="model"><img src="images/model/thumb/model1.jpg" alt="Model 1" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model2.jpg" alt="Model 2" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model3.jpg" alt="Model 3" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model4.jpg" alt="Model 4" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model5.jpg" alt="Model 5" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model6.jpg" alt="Model 6" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model7.jpg" alt="Model 7" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model8.jpg" alt="Model 8" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model9.jpg" alt="Model 9" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model10.jpg" alt="Model 10" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model11.jpg" alt="Model 11" onclick="openModal(this)"></div>
+    <div class="model"><img src="images/model/thumb/model12.jpg" alt="Model 12" onclick="openModal(this)"></div>
+  </main>
+
+  <div class="modal" id="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="">
   </div>
 
-  <div class="overlay" id="overlay">
-    <span class="close-btn" id="closeBtn">&times;</span>
-    <img id="overlayImg" src="">
-  </div>
+  <footer>
+    © 2025 Zidane Chen. All rights reserved.
+  </footer>
 
   <script>
-    const overlay = document.getElementById("overlay");
-    const overlayImg = document.getElementById("overlayImg");
-    const closeBtn = document.getElementById("closeBtn");
-    const items = document.querySelectorAll(".gallery-item img");
+    function openModal(img) {
+      const modal = document.getElementById("modal");
+      const modalImage = document.getElementById("modalImage");
+      modal.style.display = "flex";
+      modalImage.src = img.src.replace("thumb", "large"); // 切换到大图路径
+    }
 
-    items.forEach(img => {
-      img.addEventListener("click", () => {
-        overlayImg.src = img.src;
-        overlay.style.display = "flex";
-      });
-    });
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
 
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay || e.target === closeBtn) {
-        overlay.style.display = "none";
-      }
+    // 点击灰色背景关闭
+    document.getElementById("modal").addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) closeModal();
     });
   </script>
 </body>
